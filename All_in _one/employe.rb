@@ -1,3 +1,4 @@
+
 require_relative 'employeework'
 require 'date'
 module Employee
@@ -66,7 +67,7 @@ module Employee
     else
       Employeework.create(name, leave_take, start_date, end_date)
       puts 'succusfully send to HR'
-      Hr.status
+       Hr.status
     end
   end
 
@@ -103,10 +104,10 @@ module Employee
 
     when 5
       holidays
-    
+
     when 6
       puts "work in prograss.."
-     
+
     when 7
       exit!
 
@@ -117,4 +118,4 @@ module Employee
     employee_menu
   end
 end
-#  Employee.employee_menu  
+ Employee.employee_menu
