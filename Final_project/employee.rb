@@ -99,11 +99,9 @@ class Employee
       puts "Please fill in all the required fields.\n"
       sick_leave
     else
-
       puts 'succusfully send to HR'
       Hr.create(name, leave_take, start_date, end_date)
       employee_functions
-
     end
   end
 
@@ -113,9 +111,7 @@ class Employee
 
   def self.casual_leaves
     puts '---------------------------** We provide 2 Casule leave **---------------------------'
-
     puts 'Please Fill the details: '
-
     puts 'Please enter name'
     name_emp = gets.chomp.to_s
 
