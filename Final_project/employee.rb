@@ -1,7 +1,6 @@
 require_relative 'hr'
 
 class Employee
-
   EMPLOYEE_DETAILS = []
   attr_accessor :id, :username, :userpassword, :sl, :cl
 
@@ -184,9 +183,7 @@ class Employee
     puts '*****************************************************************************************************************************************'
 
     number = gets.chomp.to_i
-
     case number
-
     when 1
       Hr.hrlogin
     when 2

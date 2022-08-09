@@ -13,7 +13,7 @@ module Hr
     password = gets.chomp
 
     if email == 'hr' && password == '12'
-      puts 'Welcome to log in Succusfully as HR ! 😃 "'
+      puts 'Welcome to log in Succusfully as HR ! 😃 ""'
       hr_menu
     else
       puts 'Invalid log in..! ⚠'
