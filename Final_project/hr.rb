@@ -13,7 +13,7 @@ module Hr
     password = gets.chomp
 
     if email == 'hr' && password == '12'
-      puts 'Welcome to log in Succusfully as HR ! 😃 "'
+      puts 'Welcome to log in Succusfully as HR ! 😃 ""'
       hr_menu
     else
       puts 'Invalid log in..! ⚠'
@@ -65,7 +65,6 @@ module Hr
     puts '1 to check leave '
     puts '2 to Logout !'
     puts '3 to exit'
-
     hr_choice = gets.chomp.to_i
     case hr_choice
     when 1
