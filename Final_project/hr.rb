@@ -44,7 +44,7 @@ module Hr
               hr_menu
             else
               puts 'Accepted'
-              Employee.leaveUpdateSl(p[:Leaves])
+              Main.leaveUpdateSl(p[:Leaves])
               @@str = 'Accepted'
               hr_menu
             end
@@ -70,7 +70,7 @@ module Hr
     when 1
       status
     when 2
-      Employee.log_in_functionality
+      Main.log_in_functionality
     when 3
       exit!
     else

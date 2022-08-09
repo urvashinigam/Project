@@ -1,36 +1,7 @@
 require_relative 'hr'
+require_relative 'emp_hr'
 
-class Employee
-  EMPLOYEE_DETAILS = []
-  attr_accessor :id, :username, :userpassword, :sl, :cl
-
-  def initialize(username, userpassword)
-    @id = set_id
-    @username = username
-    @userpassword = userpassword
-    @@sl = 5
-    @@cl = 18
-    EMPLOYEE_DETAILS << self
-  end
-
-  def set_id
-    (EMPLOYEE_DETAILS.last&.id || 0) + 1
-  end
-
-  def self.all
-    EMPLOYEE_DETAILS
-  end
-
-  def self.view
-    EMPLOYEE_DETAILS.find do |user|
-      puts "ID: #{user.id} Name: #{user.username} Password: #{user.userpassword} Cl: #{@@cl} Sl: #{@@sl}"
-    end
-    employee_functions
-  end
-
-  def self.create(username, userpassword)
-    new(username, userpassword)
-  end
+module Main
 
   def self.login_employee
     puts '---- login page ----- '
@@ -40,8 +11,9 @@ class Employee
     puts 'Enter password to login :'
     loginpassword = gets.chomp.to_i
 
-    EMPLOYEE_DETAILS.find do |user|
-      if user.username == loginname && user.userpassword == loginpassword
+    Employee.all.find do |user|
+      if user.username == loginname
+        @@username = loginname
         puts 'succsfully login'
         employee_functions
 
@@ -51,6 +23,10 @@ class Employee
       end
     end
   end
+
+  # def self.user_name
+  #   @@username
+  # end
 
   def self.employee_functions
     puts '1 to add sick leaves'
@@ -64,10 +40,10 @@ class Employee
     when 1
       sick_leave
     when 2
-      view
+      Employee.view
     when 3
       holidays
-      log_in_functionality
+      
     when 4
       casual_leaves
     when 5
@@ -105,7 +81,11 @@ class Employee
   end
 
   def self.leaveUpdateSl(leave)
-    @@sl -= leave
+    Employee.all.select do |user|
+      if user.username == @@username
+       puts user.sl -= leave
+      end
+    end
   end
 
   def self.casual_leaves
@@ -134,8 +114,11 @@ class Employee
   end
 
   def self.leaveUpdateCl(leave)
-    @@cl -= leave
-    puts "Left leaves #{@@cl}"
+    Employee.all.select do |user|
+      if user.username == @@username
+       puts  user.cl -= leave
+      end
+    end
   end
 
   def self.holidays
@@ -191,7 +174,7 @@ class Employee
       name = gets.chomp.to_s
       puts 'Enter your password'
       password = gets.chomp.to_i
-      create(name, password)
+      Employee.create(name, password)
       puts 'Sign up successfully'
       employee_menu
     when 3
@@ -203,5 +186,4 @@ class Employee
     end
   end
 end
-
-Employee.log_in_functionality
+Main.log_in_functionality
