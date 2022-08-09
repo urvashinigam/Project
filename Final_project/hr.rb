@@ -65,7 +65,6 @@ module Hr
     puts '1 to check leave '
     puts '2 to Logout !'
     puts '3 to exit'
-
     hr_choice = gets.chomp.to_i
     case hr_choice
     when 1
