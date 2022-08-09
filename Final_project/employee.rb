@@ -1,4 +1,3 @@
-require 'colorize'
 require_relative 'hr'
 
 class Employee
@@ -43,10 +42,14 @@ class Employee
     loginpassword = gets.chomp.to_i
 
     EMPLOYEE_DETAILS.find do |user|
-      next unless user.username == loginname && user.userpassword == loginpassword
-      puts 'succsfully login'
-      employee_functions
-      break
+      if user.username == loginname && user.userpassword == loginpassword
+        puts 'succsfully login'
+        employee_functions
+
+      else
+        puts 'Wrong login'
+        login_employee
+      end
     end
   end
 
@@ -65,7 +68,7 @@ class Employee
       view
     when 3
       holidays
-      employee_functions
+      log_in_functionality
     when 4
       casual_leaves
     when 5
@@ -151,7 +154,7 @@ class Employee
       4.    15      August        Monday Independence Day
       5.    11      Thursday      Raksha Bandhan
       6.    02      Sunday        Gandhi Jayanti
-      7.    05       October       Wednesday Dusshera
+      7.    5       October       Wednesday Dusshera
       8.    24      October       Monday Deepawali
       9.    25      Tuesday       Deepawali
      10.    25      December      Sunday Christmas "
@@ -173,40 +176,37 @@ class Employee
     end
   end
 
-  def self.input
-    puts 'Enter your name'
-    name = gets.chomp.to_s
-    puts 'Enter your password'
-    password = gets.chomp.to_i
-    create(name, password)
-    puts 'Sign up successfully'
-    employee_menu
-  end
-
   def self.log_in_functionality
-    puts " -ˏˋ. Leave Managment System ˊˎ-".center(130)
-    puts "*****************************************************************************************************************************************"
-        puts     "   ╔═══════☆.✵.☆═══════╗ ".center(130)
-        puts ' Enter 1 for log in HR '   .center(130)
-        puts ' Enter 2 for signup as Employee '.center(130)
-        puts ' Enter 3 for log in Employee '.center(130)
-        puts ' Enter 4 for Exit  '.center(130)
-        puts     "   ╚═══════☆.✵.☆═══════╝ ".center(130)
-    puts "*****************************************************************************************************************************************"
+    puts ' -ˏˋ. Leave Managment System ˊˎ-'.center(130)
+    puts '*****************************************************************************************************************************************'
+    puts '   ╔═══════☆.✵.☆═══════╗ '.center(130)
+    puts ' Enter 1 for log in HR '.center(130)
+    puts ' Enter 2 for signup as Employee '.center(130)
+    puts ' Enter 3 for log in Employee '.center(130)
+    puts ' Enter 4 for Exit  '.center(130)
+    puts '   ╚═══════☆.✵.☆═══════╝ '.center(130)
+    puts '*****************************************************************************************************************************************'
 
     number = gets.chomp.to_i
+
     case number
 
     when 1
       Hr.hrlogin
     when 2
-      input
+      puts 'Enter your name'
+      name = gets.chomp.to_s
+      puts 'Enter your password'
+      password = gets.chomp.to_i
+      create(name, password)
+      puts 'Sign up successfully'
+      employee_menu
     when 3
       login_employee
     when 4
       exit!
     else
-      puts 'Invalid do not take unnecessary !'.red
+      puts 'Invalid do not take unnecessary !'
     end
   end
 end
